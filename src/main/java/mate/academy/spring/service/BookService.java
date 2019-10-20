@@ -1,10 +1,16 @@
 package mate.academy.spring.service;
 
 import java.util.List;
+import java.util.Optional;
 import mate.academy.spring.entity.Book;
 
 public interface BookService {
-    void add(Book book);
+    Book add(Book book);
 
-    List<Book> listBooks();
+    List<Book> getAll();
+
+    Optional<Book> getById(Long id);
+
+    List<Book> getByTitle(String title);
+
 }
