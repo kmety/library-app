@@ -1,6 +1,7 @@
 package mate.academy.spring.dao.impl;
 
 import java.util.List;
+import java.util.Optional;
 import javax.persistence.TypedQuery;
 import mate.academy.spring.dao.BookDao;
 import mate.academy.spring.entity.Book;
@@ -15,14 +16,28 @@ public class BookDaoImpl implements BookDao {
     private SessionFactory sessionFactory;
 
     @Override
-    public void add(Book book) {
+    public Book add(Book book) {
         sessionFactory.getCurrentSession().save(book);
+        return book;
     }
 
     @Override
-    public List<Book> listBooks() {
-        @SuppressWarnings("unchecked")
-        TypedQuery<Book> query = sessionFactory.getCurrentSession().createQuery("from Book");
+    public Optional<Book> getById(Long id) {
+        return Optional.ofNullable(sessionFactory.getCurrentSession().get(Book.class, id));
+    }
+
+    @Override
+    public List<Book> getByTitle(String title) {
+        TypedQuery<Book> query = sessionFactory.getCurrentSession()
+                .createQuery("FROM Book WHERE title LIKE CONCAT('%', :title, '%')", Book.class);
+        query.setParameter("title", title);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Book> getAll() {
+        TypedQuery<Book> query
+                = sessionFactory.getCurrentSession().createQuery("FROM Book", Book.class);
         return query.getResultList();
     }
 }

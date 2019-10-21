@@ -2,9 +2,6 @@ package mate.academy.spring.config;
 
 import java.util.Properties;
 import javax.sql.DataSource;
-
-import mate.academy.spring.entity.Book;
-import mate.academy.spring.entity.User;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -47,9 +44,10 @@ public class AppConfig {
         Properties props = new Properties();
         props.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
         props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+        props.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
 
         factoryBean.setHibernateProperties(props);
-        factoryBean.setAnnotatedClasses(User.class, Book.class);
+        factoryBean.setPackagesToScan("mate.academy.spring.entity");
         return factoryBean;
     }
 
