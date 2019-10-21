@@ -17,8 +17,7 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public Book add(Book book) {
-        Long id = (Long) sessionFactory.getCurrentSession().save(book);
-        book.setId(id);
+        sessionFactory.getCurrentSession().save(book);
         return book;
     }
 

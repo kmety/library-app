@@ -17,8 +17,7 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public User add(User user) {
-        Long id = (Long) sessionFactory.getCurrentSession().save(user);
-        user.setId(id);
+        sessionFactory.getCurrentSession().save(user);
         return user;
     }
 

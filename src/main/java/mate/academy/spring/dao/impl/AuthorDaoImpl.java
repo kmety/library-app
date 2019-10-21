@@ -16,8 +16,7 @@ public class AuthorDaoImpl implements AuthorDao {
 
     @Override
     public Author add(Author author) {
-        Long id = (Long) sessionFactory.getCurrentSession().save(author);
-        author.setId(id);
+        sessionFactory.getCurrentSession().save(author);
         return author;
     }
 
