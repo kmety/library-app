@@ -11,5 +11,7 @@ public interface BookDao {
 
     List<Book> getByTitle(String title);
 
+    void delete(Long id);
+
     List<Book> getAll();
 }

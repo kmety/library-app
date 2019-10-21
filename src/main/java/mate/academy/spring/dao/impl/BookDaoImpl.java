@@ -35,6 +35,13 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
+    public void delete(Long id) {
+        Book book = new Book();
+        book.setId(id);
+        sessionFactory.getCurrentSession().delete(book);
+    }
+
+    @Override
     public List<Book> getAll() {
         TypedQuery<Book> query
                 = sessionFactory.getCurrentSession().createQuery("FROM Book", Book.class);

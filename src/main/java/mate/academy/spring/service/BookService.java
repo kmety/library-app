@@ -13,4 +13,6 @@ public interface BookService {
 
     List<Book> getByTitle(String title);
 
+    void delete(Long id);
+
 }
