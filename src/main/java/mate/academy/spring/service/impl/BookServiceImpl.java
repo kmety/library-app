@@ -37,4 +37,10 @@ public class BookServiceImpl implements BookService {
     public List<Book> getByTitle(String title) {
         return bookDao.getByTitle(title);
     }
+
+    @Transactional
+    @Override
+    public void delete(Long id) {
+        bookDao.delete(id);
+    }
 }
