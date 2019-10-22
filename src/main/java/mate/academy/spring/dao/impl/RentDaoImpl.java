@@ -33,7 +33,7 @@ public class RentDaoImpl implements RentDao {
     }
 
     @Override
-    public List<Book> getBooksRentByUser(User user) {
+    public List<Book> getBooksRentedByUser(User user) {
         TypedQuery<Book> query = sessionFactory.getCurrentSession().createQuery(
                 "SELECT rent.book "
                         + "FROM Rent AS rent "

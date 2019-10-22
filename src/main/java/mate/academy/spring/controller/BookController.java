@@ -7,10 +7,14 @@ import mate.academy.spring.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/book")
@@ -19,14 +23,31 @@ public class BookController {
     private BookService bookService;
 
     @GetMapping("/all")
-    public String getAllBooks(ModelMap model) {
+    public String getAllBooks(Model model) {
         List<Book> books = bookService.getAll();
-        model.put("books", books);
+        model.addAttribute("books", books);
         return "books";
     }
 
-    @GetMapping("/info")
-    public String bookInfo(@RequestParam("book_id") Long id, Model model) {
+    @GetMapping("/add")
+    public ModelAndView showAddBookForm() {
+        return new ModelAndView("createBook", "bookForm", new Book());
+    }
+
+    @PostMapping("/add")
+    public String addBook(
+            @ModelAttribute("bookForm") Book book, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("message", "Book creating error");
+            return "errorPage";
+        }
+        bookService.add(book);
+        model.addAttribute("books", bookService.getAll());
+        return "books";
+    }
+
+    @GetMapping("/{id}")
+    public String bookInfo(@PathVariable("id") Long id, Model model) {
         Optional<Book> bookOptional = bookService.getById(id);
         if (bookOptional.isEmpty()) {
             model.addAttribute("message", "Book not found");
@@ -34,6 +55,13 @@ public class BookController {
         }
         model.addAttribute("book", bookOptional.get());
         return "bookInfo";
+    }
+
+    @GetMapping("/find")
+    public String findByTitle(@RequestParam("title") String title, Model model) {
+        List<Book> books = bookService.getByTitle(title);
+        model.addAttribute("books", books);
+        return "books";
     }
 
     @GetMapping("/delete")

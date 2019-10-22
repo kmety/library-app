@@ -31,7 +31,7 @@ public class RentServiceImpl implements RentService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Book> getBooksRentByUser(User user) {
-        return rentDao.getBooksRentByUser(user);
+    public List<Book> getBooksRentedByUser(User user) {
+        return rentDao.getBooksRentedByUser(user);
     }
 }

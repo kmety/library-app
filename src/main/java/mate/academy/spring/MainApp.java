@@ -95,13 +95,13 @@ public class MainApp {
         System.out.println();
 
         // Get rented books
-        List<Book> rentedBooks = rentService.getBooksRentByUser(user3);
+        List<Book> rentedBooks = rentService.getBooksRentedByUser(user3);
         rentedBooks.forEach(System.out::println);
         System.out.println();
 
         // Return book
         rentService.returnBook(user3, book3);
-        rentedBooks = rentService.getBooksRentByUser(user3);
+        rentedBooks = rentService.getBooksRentedByUser(user3);
         rentedBooks.forEach(System.out::println);
         context.close();
     }
