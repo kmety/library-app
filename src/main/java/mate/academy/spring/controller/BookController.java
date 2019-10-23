@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/book")
@@ -30,8 +29,9 @@ public class BookController {
     }
 
     @GetMapping("/add")
-    public ModelAndView showAddBookForm() {
-        return new ModelAndView("createBook", "bookForm", new Book());
+    public String showAddBookForm(Model model) {
+        model.addAttribute("bookForm", new Book());
+        return "createBook";
     }
 
     @PostMapping("/add")
@@ -42,8 +42,7 @@ public class BookController {
             return "errorPage";
         }
         bookService.add(book);
-        model.addAttribute("books", bookService.getAll());
-        return "books";
+        return getAllBooks(model);
     }
 
     @GetMapping("/{id}")
