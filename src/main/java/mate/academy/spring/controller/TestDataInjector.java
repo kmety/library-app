@@ -5,8 +5,10 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import mate.academy.spring.entity.Author;
 import mate.academy.spring.entity.Book;
+import mate.academy.spring.entity.User;
 import mate.academy.spring.service.AuthorService;
 import mate.academy.spring.service.BookService;
+import mate.academy.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +18,8 @@ public class TestDataInjector {
     private BookService bookService;
     @Autowired
     private AuthorService authorService;
+    @Autowired
+    private UserService userService;
 
     @PostConstruct
     public void injectData() {
@@ -50,5 +54,12 @@ public class TestDataInjector {
         book4Authors.add(author5);
         book4.setAuthors(book4Authors);
         bookService.add(book4);
+
+        User user1 = new User("Ivan", "Ivanov");
+        userService.add(user1);
+        User user2 = new User("Peter", "Petrov");
+        userService.add(user2);
+        User user3 = new User("Nikolay", "Nikolaev");
+        userService.add(user3);
     }
 }
