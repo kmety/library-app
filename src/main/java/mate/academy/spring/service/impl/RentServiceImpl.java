@@ -30,6 +30,12 @@ public class RentServiceImpl implements RentService {
     }
 
     @Override
+    @Transactional
+    public boolean isRentedByUser(User user, Book book) {
+        return rentDao.isRentedByUser(user, book);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public List<Book> getBooksRentedByUser(User user) {
         return rentDao.getBooksRentedByUser(user);

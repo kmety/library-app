@@ -14,7 +14,6 @@
                 <th>Info</th>
                 <th>Delete</th>
                 <th>Rent</th>
-                <th>Return</th>
             </tr>
             <c:forEach var="book" items="${books}">
                 <tr>
@@ -28,10 +27,7 @@
                         <a href="${pageContext.request.contextPath}/book/delete?book_id=${book.id}">Delete</a>
                     </td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/rent/getBook?book_id=${book.id}">Rent</a>
-                    </td>
-                    <td>
-                        <a href="${pageContext.request.contextPath}/rent/returnBook?book_id=${book.id}">Return</a>
+                        <a href="${pageContext.request.contextPath}/rent/rentBook?book_id=${book.id}">Rent</a>
                     </td>
                 </tr>
             </c:forEach>

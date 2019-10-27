@@ -38,8 +38,22 @@ public class RentDaoImpl implements RentDao {
                 "SELECT rent.book "
                         + "FROM Rent AS rent "
                         + "WHERE rent.user = :user "
-                        + "AND active = true", Book.class);
+                        + "AND rent.active = true", Book.class);
         query.setParameter("user", user);
         return query.getResultList();
+    }
+
+    @Override
+    public boolean isRentedByUser(User user, Book book) {
+        TypedQuery<Book> query = sessionFactory.getCurrentSession().createQuery(
+                "SELECT rent.book "
+                        + "FROM Rent rent "
+                        + "WHERE rent.user = :user "
+                        + "AND rent.book = :book "
+                        + "AND rent.active = true ", Book.class);
+        query.setParameter("user", user);
+        query.setParameter("book", book);
+        List<Book> retrievedBooks = query.getResultList();
+        return !retrievedBooks.isEmpty();
     }
 }

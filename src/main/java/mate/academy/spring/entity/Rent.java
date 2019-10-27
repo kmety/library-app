@@ -21,7 +21,6 @@ public class Rent {
     @Column(name = "rent_id")
     private Long id;
 
-    @Column
     private LocalDate rentDate;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -32,7 +31,6 @@ public class Rent {
     @JoinColumn(name = "book_id", referencedColumnName = "book_id")
     private Book book;
 
-    @Column
     private boolean active;
 
     public Rent() {

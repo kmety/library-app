@@ -19,10 +19,7 @@ public class Author {
     @Column(name = "author_id")
     private Long id;
 
-    @Column
     private String name;
-
-    @Column
     private String surname;
 
     @ManyToMany(mappedBy = "authors", cascade = CascadeType.ALL)
@@ -70,6 +67,6 @@ public class Author {
 
     @Override
     public String toString() {
-        return "Author: id" + id + " " + name + " " + surname;
+        return "Author: " + name + " " + surname;
     }
 }
