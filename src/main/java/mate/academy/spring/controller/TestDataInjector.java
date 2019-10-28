@@ -78,6 +78,7 @@ public class TestDataInjector {
         peter.setUserName("peter");
         peter.setPassword("1");
         peter.setRepeatPassword("1");
+        peter.setRole("ROLE_USER");
         userService.add(peter);
 
         UserRegistrationDto nick = new UserRegistrationDto();
@@ -87,6 +88,7 @@ public class TestDataInjector {
         nick.setUserName("nick");
         nick.setPassword("1");
         nick.setRepeatPassword("1");
+        nick.setRole("ROLE_USER");
         userService.add(nick);
     }
 }

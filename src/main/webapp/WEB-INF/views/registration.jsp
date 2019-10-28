@@ -34,7 +34,7 @@
             <td><form:input path="repeatPassword" type="password"/></td>
         </tr>
         <tr>
-            <td></td>
+            <td><form:input path="role" type="hidden" value="ROLE_USER"/></td>
             <td><input type="submit" value="Confirm"/></td>
         </tr>
     </table>

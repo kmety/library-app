@@ -21,12 +21,7 @@ public class DtoUtil {
         user.setEmail(userDto.getEmail());
         user.setUsername(userDto.getUserName());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        Role role;
-        if ("ROLE_ADMIN".equals(userDto.getRole())) {
-            role = roleService.getByName("ROLE_ADMIN");
-        } else {
-            role = roleService.getByName("ROLE_USER");
-        }
+        Role role = roleService.getByName(userDto.getRole());
         user.getRoles().add(role);
         return user;
     }
