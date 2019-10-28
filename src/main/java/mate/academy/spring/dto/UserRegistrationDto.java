@@ -26,8 +26,7 @@ public class UserRegistrationDto {
     @NotEmpty
     @ValidEmail
     private String email;
-    @NotNull
-    @NotEmpty
+
     private String role;
 
     public String getUserName() {

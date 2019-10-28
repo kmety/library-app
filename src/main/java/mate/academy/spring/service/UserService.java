@@ -9,7 +9,7 @@ import mate.academy.spring.entity.User;
 public interface UserService {
     User add(UserRegistrationDto userDto);
 
-    Optional<User> getByUsername(String username);
+    Optional<User> getByUserName(String username);
 
     Optional<User> getById(Long id);
 

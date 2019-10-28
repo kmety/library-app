@@ -58,8 +58,8 @@ public class TestDataInjector {
         book4.setAuthors(book4Authors);
         bookService.add(book4);
 
-        roleService.addRole("user");
-        roleService.addRole("admin");
+        roleService.addRole("ROLE_USER");
+        roleService.addRole("ROLE_ADMIN");
 
         UserRegistrationDto ivan = new UserRegistrationDto();
         ivan.setFirstName("Ivanov");
@@ -68,7 +68,7 @@ public class TestDataInjector {
         ivan.setUserName("ivan");
         ivan.setPassword("1");
         ivan.setRepeatPassword("1");
-        ivan.setRole("admin");
+        ivan.setRole("ROLE_ADMIN");
         userService.add(ivan);
 
         UserRegistrationDto peter = new UserRegistrationDto();
@@ -78,7 +78,6 @@ public class TestDataInjector {
         peter.setUserName("peter");
         peter.setPassword("1");
         peter.setRepeatPassword("1");
-        peter.setRole("user");
         userService.add(peter);
 
         UserRegistrationDto nick = new UserRegistrationDto();
@@ -88,7 +87,6 @@ public class TestDataInjector {
         nick.setUserName("nick");
         nick.setPassword("1");
         nick.setRepeatPassword("1");
-        nick.setRole("user");
         userService.add(nick);
     }
 }

@@ -27,7 +27,7 @@ public class RentController {
 
     @GetMapping("/rentBook")
     public String rentBook(@RequestParam("book_id") Long bookId, Model model, Principal principal) {
-        Optional<User> optionalUser = getCurrentUser(principal);
+        Optional<User> optionalUser = userService.getByUserName(principal.getName());
         if (optionalUser.isEmpty()) {
             model.addAttribute("message", "User not found");
             return "errorPage";
@@ -50,7 +50,7 @@ public class RentController {
     @GetMapping("/returnBook")
     public String returnBook(
             @RequestParam("book_id") Long bookId, Model model, Principal principal) {
-        Optional<User> optionalUser = getCurrentUser(principal);
+        Optional<User> optionalUser = userService.getByUserName(principal.getName());
         if (optionalUser.isEmpty()) {
             model.addAttribute("message", "User not found");
             return "errorPage";
@@ -72,7 +72,7 @@ public class RentController {
 
     @GetMapping("/rentedBooks")
     public String getBooksRentedByUser(Model model, Principal principal) {
-        Optional<User> optionalUser = getCurrentUser(principal);
+        Optional<User> optionalUser = userService.getByUserName(principal.getName());
         if (optionalUser.isEmpty()) {
             model.addAttribute("message", "User not found");
             return "errorPage";
@@ -80,12 +80,5 @@ public class RentController {
         List<Book> books = rentService.getBooksRentedByUser(optionalUser.get());
         model.addAttribute("books", books);
         return "rentedBooks";
-    }
-
-    private Optional<User> getCurrentUser(Principal principal) {
-        if (principal == null) {
-            return Optional.empty();
-        }
-        return userService.getByUsername(principal.getName());
     }
 }

@@ -8,7 +8,7 @@ import mate.academy.spring.entity.User;
 public interface UserDao {
     User add(User user);
 
-    Optional<User> getByUsername(String username);
+    Optional<User> getByUserName(String username);
 
     Optional<User> getByEmail(String email);
 

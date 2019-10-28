@@ -17,13 +17,12 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public User add(User user) {
-        System.out.println(user.getRoles());
         sessionFactory.getCurrentSession().save(user);
         return user;
     }
 
     @Override
-    public Optional<User> getByUsername(String username) {
+    public Optional<User> getByUserName(String username) {
         TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery(
                 "FROM User WHERE username = :username", User.class);
         query.setParameter("username", username);

@@ -34,10 +34,6 @@
             <td><form:input path="repeatPassword" type="password"/></td>
         </tr>
         <tr>
-            <td><form:label path="role">Type 'admin' or 'user' here</form:label></td>
-            <td><form:input path="role"/></td>
-        </tr>
-        <tr>
             <td></td>
             <td><input type="submit" value="Confirm"/></td>
         </tr>
