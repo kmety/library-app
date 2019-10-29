@@ -11,4 +11,6 @@ public interface RentDao {
     void returnBook(User user, Book book);
 
     List<Book> getBooksRentedByUser(User user);
+
+    boolean isRentedByUser(User user, Book book);
 }

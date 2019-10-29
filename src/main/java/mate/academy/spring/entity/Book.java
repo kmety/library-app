@@ -23,7 +23,6 @@ public class Book {
     @Column(name = "book_id")
     private Long id;
 
-    @Column
     private String title;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -35,10 +34,7 @@ public class Book {
                     @JoinColumn(name = "author_id", referencedColumnName = "author_id")})
     private List<Author> authors = new ArrayList<>();
 
-    @Column
     private Integer year;
-
-    @Column(columnDefinition = "DECIMAL")
     private Double price;
 
     public Book() {

@@ -10,5 +10,7 @@ public interface RentService {
 
     void returnBook(User user, Book book);
 
+    boolean isRentedByUser(User user, Book book);
+
     List<Book> getBooksRentedByUser(User user);
 }

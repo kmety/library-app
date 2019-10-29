@@ -22,6 +22,34 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
+    public Optional<User> getByUserName(String username) {
+        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery(
+                "FROM User WHERE username = :username", User.class);
+        query.setParameter("username", username);
+        Optional<User> optionalUser;
+        try {
+            optionalUser = Optional.of(query.getSingleResult());
+        } catch (Exception e) {
+            optionalUser = Optional.empty();
+        }
+        return optionalUser;
+    }
+
+    @Override
+    public Optional<User> getByEmail(String email) {
+        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery(
+                "FROM User WHERE email = :email", User.class);
+        query.setParameter("email", email);
+        Optional<User> optionalUser;
+        try {
+            optionalUser = Optional.of(query.getSingleResult());
+        } catch (Exception e) {
+            optionalUser = Optional.empty();
+        }
+        return optionalUser;
+    }
+
+    @Override
     public Optional<User> getById(Long id) {
         return Optional.ofNullable(sessionFactory.getCurrentSession().get(User.class, id));
     }

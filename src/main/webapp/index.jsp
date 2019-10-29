@@ -6,6 +6,10 @@
     <title>Index page</title>
   </head>
   <body>
-      <a href="${pageContext.request.contextPath}/book/all">All books page</a>
+      <a href="${pageContext.request.contextPath}/book/all">All books</a>
+      <br>
+      <a href="${pageContext.request.contextPath}/user/login">Login</a>
+      <br>
+      <a href="${pageContext.request.contextPath}/user/register">Registration</a>
   </body>
 </html>
